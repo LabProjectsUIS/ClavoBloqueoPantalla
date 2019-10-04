@@ -29,6 +29,7 @@ public class ColliderBehaviour : MonoBehaviour {
     double distanciaPunto4;
     double distanciaBroca;
     double distanciaBrocaEnt;
+    double distanciabrocahueso;
     GameObject punto1A;
     GameObject punto1B;
     GameObject punto2A;
@@ -45,6 +46,7 @@ public class ColliderBehaviour : MonoBehaviour {
     GameObject punto3BS;
     GameObject punto4AS;
     GameObject punto4BS;
+    GameObject Hueso;
 
 
     GameObject Guia;
@@ -68,7 +70,7 @@ public class ColliderBehaviour : MonoBehaviour {
     GameObject targetCanvas;
 
     Text profundidad;
-
+    Text HuesoCol;
     void Awake()
     {
         
@@ -93,6 +95,7 @@ public class ColliderBehaviour : MonoBehaviour {
         //porcentaje = GameObject.Find("porcentaje").GetComponent<Text>();
         Guia = GameObject.Find("guia_model");
         punto1A = GameObject.Find("punto1A");
+        Hueso = GameObject.Find("Hueso");
         punto1B = GameObject.Find("punto1B");
         punto2A = GameObject.Find("punto2A");
         punto2B = GameObject.Find("punto2B");
@@ -115,6 +118,7 @@ public class ColliderBehaviour : MonoBehaviour {
         Puntos3 = GameObject.Find("puntos3");
         Puntos4 = GameObject.Find("puntos4");
         profundidad = GameObject.Find("profundidad").GetComponent<Text>();
+        HuesoCol = GameObject.Find("HuesoCol").GetComponent<Text>();
         azul = new Color(0, 0, 255);
         verde = new Color(0, 255, 0);
         rojo = new Color(255, 0, 0);
@@ -460,9 +464,16 @@ public class ColliderBehaviour : MonoBehaviour {
                 }
 
                 profundidad.text = (((int)(distanciaBrocaEnt * 1000)).ToString() + "mm");
+               
+                //if(distanciaBrocaEnt * 1000 == 0) { Debug.Log("la distancia es cero"); }
             }
 
 
+        }
+        if (Hueso.activeSelf == true)
+        {
+            distanciabrocahueso = (Vector3.Distance(puntaBrocaPegada.transform.position, Hueso.GetComponent<CapsuleCollider>().transform.position));
+            HuesoCol.text = (((int)(distanciabrocahueso* 1000)).ToString() + "mm");
         }
 
 
@@ -471,7 +482,12 @@ public class ColliderBehaviour : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        
+        if (other.gameObject.name == "Hueso")
+        {
+            Debug.Log(distanciabrocahueso);
+            
+            countV++;
+        }
 
         if (other.gameObject.name=="punto1AS" || other.gameObject.name == "punto2AS" || other.gameObject.name == "punto3AS" || other.gameObject.name == "punto4AS")
         {

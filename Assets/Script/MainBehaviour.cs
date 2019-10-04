@@ -107,6 +107,8 @@ public class MainBehaviour : MonoBehaviour {
     GameObject Indicador3;
     GameObject Indicador4;
 
+    public GameObject spriteAP;
+
     Camera CameraPiel22;
     Camera CameraPiel2;
     Camera CameraHueso22;
@@ -116,6 +118,7 @@ public class MainBehaviour : MonoBehaviour {
     Camera camP1;
     GameObject flag;
     bool m;
+
     //Ray ray1A;
     //Ray ray1B;
     //Ray ray2A;
@@ -128,7 +131,8 @@ public class MainBehaviour : MonoBehaviour {
 
 
 
-    // Use this for initialization
+    
+    
 
     void Awake()
     {
@@ -139,8 +143,9 @@ public class MainBehaviour : MonoBehaviour {
         CameraPiel22 = GameObject.Find("CameraPiel22").GetComponent<Camera>();
         CameraHueso22 = GameObject.Find("CameraHueso22").GetComponent<Camera>();
         CamC = GameObject.Find("CameraCorona").GetComponent<Camera>();
-
         flag = GameObject.Find("Flag");
+        
+
         Indicador1 = GameObject.Find("Indicador1");
         Indicador2 = GameObject.Find("Indicador2");
         Indicador3 = GameObject.Find("Indicador3");
@@ -227,13 +232,7 @@ public class MainBehaviour : MonoBehaviour {
     }
     void Start()
     {
-
-        
-      
-
-
         punto1Select();
-
         //4 points coordinates: tibiaA, tibiaB, femurA, femurB
         posicionPunto1A = loaderScript.punto1A;
         posicionPunto1B = loaderScript.punto1B;
@@ -492,11 +491,12 @@ public class MainBehaviour : MonoBehaviour {
 
     }
 
-   /* public void adjustCamera()
-    {
-        Vector3 tibiaVector = tibiaPuntoB.transform.position-tibiaPuntoA.transform.position;
-        target.transform.position = tibiaVector*;
-    }*/
+    /* public void adjustCamera()
+     {
+         Vector3 tibiaVector = tibiaPuntoB.transform.position-tibiaPuntoA.transform.position;
+         target.transform.position = tibiaVector*;
+     }*/
+    
 
     public void Rotater() {
         
@@ -528,6 +528,8 @@ public class MainBehaviour : MonoBehaviour {
         Indicador4.SetActive(false);
         camP1.nearClipPlane = 0.01f;
         camH.nearClipPlane = 0.13f;
+
+      
         m = true;
 
     }
@@ -547,6 +549,7 @@ public class MainBehaviour : MonoBehaviour {
         Indicador4.SetActive(false);
         camP1.nearClipPlane = 0.42f;
         camH.nearClipPlane = 0.22f;
+        //TransformExtensions.SetYPos(spriteAP.transform, -0.000000000000001f);
         m = true;
     }
     public void punto3Select()
@@ -738,5 +741,23 @@ public class MainBehaviour : MonoBehaviour {
 
 
         }
+    }
+}
+public static class TransformExtensions
+{
+    public static void SetYPos(this Transform t,float newZPos)
+    {
+        var posZ = t.position;
+        posZ.z = newZPos;
+        t.position = posZ;
+/*
+        var posY = t.position;
+        posY.y= newYPos;
+        t.position = posY;
+
+        var posZ = t.position;
+        posZ.z = newZPos;
+        t.position = posZ;*/
+
     }
 }

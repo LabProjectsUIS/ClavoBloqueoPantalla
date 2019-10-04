@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*Este script realiza el registro de los objetos en escena para establecer una posicion dentro
+ del espacio mediante la selección de puntos establecidos en el objeto fisico y virtual.
+ 
+  Cualquier método/función que inicie como "registrar" da acción al registro al objeto nombrado
+  dentro de dicho método/función.
+
+   Tambien se establecen los metodos de cambio de Fase.
+
+ */
 public class register : MonoBehaviour {
 
     Camera camH;
@@ -120,6 +129,8 @@ public class register : MonoBehaviour {
 
         // camD.transform.position = GameObject.Find("proyector1").GetComponent<Transform>().position;
     }
+
+    //Método de interacción y cambio entre fases.
     void Cameras()
     {
 
@@ -170,7 +181,7 @@ public class register : MonoBehaviour {
         e1.transform.parent = null;
 
     }
-    void registrar()
+    void registrar()//Método de registro
     {
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -320,7 +331,7 @@ public class register : MonoBehaviour {
             Debug.Log("REGISTRA FEMUR3");
         }
     }
-    public void calibrarBroca()
+    public void calibrarBroca() //Método de registro
     {
         guiaModel.transform.LookAt(sphereLarga.transform);
         guiaModel.transform.Rotate(+90, 0, 0);
@@ -333,7 +344,7 @@ public class register : MonoBehaviour {
         f3.GetComponent<MeshRenderer>().enabled = false;
     }
 
-    public void registrarClavo0()
+    public void registrarClavo0() //Método de registro
     {
         tibia.transform.parent = null;
         t1.GetComponent<MeshRenderer>().enabled = true;
@@ -343,7 +354,7 @@ public class register : MonoBehaviour {
 
 
     }
-    public void registrarFemur1()
+    public void registrarFemur1() //Método de registro
     {
         e1.transform.position = puntaPointer.transform.position;
         f1.transform.LookAt(f2.transform);
@@ -359,7 +370,7 @@ public class register : MonoBehaviour {
         f2.GetComponent<MeshRenderer>().enabled = true;
         f3.GetComponent<MeshRenderer>().enabled = false;
     }
-        public void registrarClavo1()
+        public void registrarClavo1() //Método de registro
     {
 
         e1.transform.position = puntaPointer.transform.position;
@@ -377,7 +388,7 @@ public class register : MonoBehaviour {
         t3.GetComponent<MeshRenderer>().enabled = false;
     
     }
-    public void registrarFemur2()
+    public void registrarFemur2() //Método de registro
     {
         e2.transform.position = puntaPointer.transform.position;
         el1.transform.position = (e1.transform.position + e2.transform.position) / 2;
@@ -390,7 +401,7 @@ public class register : MonoBehaviour {
         f3.GetComponent<MeshRenderer>().enabled = true;
 
     }
-    public void registrarClavo2()
+    public void registrarClavo2() //Método de registro
     {
         e2.transform.position = puntaPointer.transform.position;
         el1.transform.position = (e1.transform.position + e2.transform.position) / 2;
@@ -402,7 +413,7 @@ public class register : MonoBehaviour {
         t2.GetComponent<MeshRenderer>().enabled = false;
         t3.GetComponent<MeshRenderer>().enabled = true;
     }
-    public void registrarFemur3()
+    public void registrarFemur3() //Método de registro
     {
         e3.transform.position = puntaPointer.transform.position;
         tempDis = Vector3.Distance(e3.transform.position, f3.transform.position);
@@ -430,7 +441,7 @@ public class register : MonoBehaviour {
 
     }
 
-    public void registrarClavo3()
+    public void registrarClavo3() //Método de registro
     {
         e3.transform.position = puntaPointer.transform.position;
         tempDis = Vector3.Distance(e3.transform.position, t3.transform.position);

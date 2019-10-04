@@ -24,6 +24,7 @@ public class DepthBehaviour : MonoBehaviour {
             colliderScript.isDrilling = true;
             //Debug.Log("chock");
         }
+        
     }
     void OnTriggerExit(Collider other)
     {
