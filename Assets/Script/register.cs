@@ -20,6 +20,7 @@ public class register : MonoBehaviour {
     Camera CameraPiel22;
     Camera CameraHueso22;
     Camera targetCamera;
+    Camera CameraContador2;
 
     GameObject flag;
     public bool man;
@@ -63,6 +64,7 @@ public class register : MonoBehaviour {
         CameraPiel22 = GameObject.Find("CameraPiel22").GetComponent<Camera>();
         CameraHueso22 = GameObject.Find("CameraHueso22").GetComponent<Camera>();
         targetCamera = GameObject.Find("CameraTarget").GetComponent<Camera>();
+        CameraContador2 = GameObject.Find("CameraContador2").GetComponent<Camera>();
 
         e1 = GameObject.Find("e1");
         e2 = GameObject.Find("e2");
@@ -99,6 +101,7 @@ public class register : MonoBehaviour {
         targetCamera.gameObject.SetActive(false);
         camC.gameObject.SetActive(true);
         CameraHueso22.gameObject.SetActive(false);
+        CameraContador2.gameObject.SetActive(false);
         // camP2.gameObject.SetActive(true);
         //camD.transform.position = new Vector3(0.033f, 0.1861f, 0.98542f);
         /* camP1.gameObject.SetActive(true);
@@ -147,6 +150,7 @@ public class register : MonoBehaviour {
             camP2.gameObject.SetActive(true);
             targetCamera.gameObject.SetActive(false);
             camC.gameObject.SetActive(false);
+            CameraContador2.gameObject.SetActive(false);
         }
         //phase 2
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -161,6 +165,7 @@ public class register : MonoBehaviour {
             camP2.gameObject.SetActive(false);
             targetCamera.gameObject.SetActive(false);
             camC.gameObject.SetActive(false);
+            CameraContador2.gameObject.SetActive(true);
 
         }
         if (!flag.gameObject.activeInHierarchy) { targetCamera.gameObject.SetActive(false); targetCamera.gameObject.SetActive(true); targetCamera.nearClipPlane = 0.06f;}

@@ -138,7 +138,7 @@ public class ColliderBehaviour : MonoBehaviour {
 
 
 
-
+        HuesoCol.gameObject.SetActive(false);
         punto1Line.material.SetColor("_EmissionColor", rojo);
         punto2Line.material.SetColor("_EmissionColor", rojo);
         punto3Line.material.SetColor("_EmissionColor", rojo);
@@ -173,6 +173,13 @@ public class ColliderBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+       
+        distanciabrocahueso = (Vector3.Distance(puntaBrocaPegada.transform.position, Hueso.transform.position));  
+            HuesoCol.gameObject.SetActive(true);
+            HuesoCol.text = (((int)(distanciabrocahueso * distanciaBroca  *1000)).ToString() + "mm");
+            Debug.Log(HuesoCol.text);
+      
+        
 
         distanciaPunto1 = Vector3.Distance(punto1A.transform.position, punto1B.transform.position);
         distanciaPunto2 = Vector3.Distance(punto2A.transform.position, punto2B.transform.position);
@@ -470,11 +477,7 @@ public class ColliderBehaviour : MonoBehaviour {
 
 
         }
-        if (Hueso.activeSelf == true)
-        {
-            distanciabrocahueso = (Vector3.Distance(puntaBrocaPegada.transform.position, Hueso.GetComponent<CapsuleCollider>().transform.position));
-            HuesoCol.text = (((int)(distanciabrocahueso* 1000)).ToString() + "mm");
-        }
+        
 
 
     }
@@ -484,9 +487,9 @@ public class ColliderBehaviour : MonoBehaviour {
 
         if (other.gameObject.name == "Hueso")
         {
-            Debug.Log(distanciabrocahueso);
+           // distanciabrocahueso = 0;
+            //HuesoCol.text = distanciabrocahueso.ToString();
             
-            countV++;
         }
 
         if (other.gameObject.name=="punto1AS" || other.gameObject.name == "punto2AS" || other.gameObject.name == "punto3AS" || other.gameObject.name == "punto4AS")
@@ -528,8 +531,13 @@ public class ColliderBehaviour : MonoBehaviour {
     }
     void OnTriggerExit(Collider other)
     {
-        
 
+        if (other.gameObject.name == "Hueso")
+        {
+
+            //HuesoCol.gameObject.SetActive(false);
+
+        }
         if (other.gameObject.name == "punto1AS" || other.gameObject.name == "punto2AS" || other.gameObject.name == "punto3AS" || other.gameObject.name == "punto4AS")
         {
             punto1AS.GetComponent<Renderer>().material.color = blancoT;
