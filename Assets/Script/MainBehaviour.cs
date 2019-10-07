@@ -667,7 +667,7 @@ public class MainBehaviour : MonoBehaviour {
         }
         else
         {
-            punto1Target.gameObject.SetActive(true);
+           punto1Target.gameObject.SetActive(true);
             punto2Target.gameObject.SetActive(true);
             punto3Target.gameObject.SetActive(true);
             punto4Target.gameObject.SetActive(true);

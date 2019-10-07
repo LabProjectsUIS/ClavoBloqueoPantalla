@@ -19,6 +19,12 @@ public class DepthBehaviour : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.name == "Hueso")
+        {
+            colliderScript.isDrillingBone = true;
+           // Debug.Log("isdrillingBONE");
+        }
+
         if (other.gameObject.name == "CylinderPunto1" || other.gameObject.name == "CylinderPunto2" || other.gameObject.name == "CylinderPunto3" || other.gameObject.name == "CylinderPunto4")
         {
             colliderScript.isDrilling = true;
@@ -31,6 +37,10 @@ public class DepthBehaviour : MonoBehaviour {
         if (other.gameObject.name == "CylinderPunto1" || other.gameObject.name == "CylinderPunto2" || other.gameObject.name == "CylinderPunto3" || other.gameObject.name == "CylinderPunto4")
         {
             colliderScript.isDrilling = false;
+        }
+        if (other.gameObject.name == "Hueso")
+        {
+            colliderScript.isDrillingBone = false;
         }
     }
 

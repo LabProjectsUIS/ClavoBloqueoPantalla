@@ -5,6 +5,7 @@ using System.Collections;
 public class ColliderBehaviour : MonoBehaviour {
 
     public bool isDrilling =false;
+    public bool isDrillingBone = false;
     LineRenderer punto1Line;
     LineRenderer punto2Line;
     LineRenderer punto3Line;
@@ -22,7 +23,9 @@ public class ColliderBehaviour : MonoBehaviour {
     Image testigoTrapecio;
     GameObject trapecioEmpty;
     GameObject puntaBrocaPegada;
+    GameObject CylinderStop;
     //Text porcentaje;
+    double distanciaHueso;
     double distanciaPunto1;
     double distanciaPunto2;
     double distanciaPunto3;
@@ -30,6 +33,7 @@ public class ColliderBehaviour : MonoBehaviour {
     double distanciaBroca;
     double distanciaBrocaEnt;
     double distanciabrocahueso;
+    double distanciaBroca2Hueso;
     GameObject punto1A;
     GameObject punto1B;
     GameObject punto2A;
@@ -68,6 +72,7 @@ public class ColliderBehaviour : MonoBehaviour {
     GameObject puntaPunto3;
     GameObject puntaPunto4;
     GameObject targetCanvas;
+    GameObject HuesoPunta;
 
     Text profundidad;
     Text HuesoCol;
@@ -75,6 +80,7 @@ public class ColliderBehaviour : MonoBehaviour {
     {
         
         targetPng = GameObject.Find("targetPNG");
+        HuesoPunta = GameObject.Find("HuesoPunta");
         puntaPunto1 = GameObject.Find("puntaBrocaPunto1");
         puntaPunto2 = GameObject.Find("puntaBrocaPunto2");
         puntaPunto3 = GameObject.Find("puntaBrocaPunto3");
@@ -89,6 +95,7 @@ public class ColliderBehaviour : MonoBehaviour {
         testigoCir = GameObject.Find("circleProgress").GetComponent<Image>();
         testigoTrapecio = GameObject.Find("TrapecioFull").GetComponent<Image>();
         perforando = GameObject.Find("perforando");
+        CylinderStop = GameObject.Find("CylinderStop");
         
         testigoCir.fillAmount = 0;
         testigoTrapecio.fillAmount = 0;
@@ -167,25 +174,19 @@ public class ColliderBehaviour : MonoBehaviour {
         distanciaPunto2 = Vector3.Distance(punto2A.transform.position, punto2B.transform.position);
         distanciaPunto3 = Vector3.Distance(punto3A.transform.position, punto3B.transform.position);
         distanciaPunto4 = Vector3.Distance(punto4A.transform.position, punto4B.transform.position);
-
         perforando.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-       
-        distanciabrocahueso = (Vector3.Distance(puntaBrocaPegada.transform.position, Hueso.transform.position));  
-            HuesoCol.gameObject.SetActive(true);
-            HuesoCol.text = (((int)(distanciabrocahueso * distanciaBroca  *1000)).ToString() + "mm");
-            Debug.Log(HuesoCol.text);
-      
-        
 
+        distanciaHueso = 2.5f;
         distanciaPunto1 = Vector3.Distance(punto1A.transform.position, punto1B.transform.position);
+        
         distanciaPunto2 = Vector3.Distance(punto2A.transform.position, punto2B.transform.position);
         distanciaPunto3 = Vector3.Distance(punto3A.transform.position, punto3B.transform.position);
         distanciaPunto4 = Vector3.Distance(punto4A.transform.position, punto4B.transform.position);
-
+      
         //targetCanvas.transform.position = puntaBrocaPegada.transform.position + new Vector3(0.09f, 0.05f, 0.02f);
         //Debug.Log(targetCanvas.transform.position+"position");
 
@@ -217,17 +218,38 @@ public class ColliderBehaviour : MonoBehaviour {
 
 
         //taladrado
+        distanciabrocahueso = (Vector3.Distance(puntaBrocaPegada.transform.position, Hueso.transform.position));
+        //Debug.Log(distanciabrocahueso);
+        if (isDrillingBone == true)
+        {
+           
+                //Debug.Log(isDrillingBone);
+                //Debug.Log(distanciabrocahueso);
+                HuesoPunta.transform.position = puntaBrocaPegada.transform.position;
+                distanciaBroca2Hueso = ((HuesoPunta.transform.localPosition.z +5))/10;
+                Debug.Log(distanciaBroca);
+                HuesoCol.gameObject.SetActive(true);
+
+                HuesoCol.text = (((int)(0.026f * distanciaBroca2Hueso * 1000)).ToString() + "mm");
+           
+            //Debug.Log(HuesoCol.text);
+        }
+        else
+        {
+            HuesoCol.text = ("");
+        }
 
         if (Puntos1.activeSelf == true)
         {
             //distanciaBroca = ((Vector3.Distance(Guia.transform.position, tibiaPuntoB.transform.position)) - 0.15);
             distanciaBrocaEnt = (Vector3.Distance(puntaBrocaPegada.transform.position, punto1A.transform.position));
-
+            //Debug.Log(distanciaBrocaEnt);
             //if (distanciaBroca < distanciaTibia && countA == 2) //ya está perforando
             if (isDrilling) //ya está perforando
             {
                 puntaPunto1.transform.position = puntaBrocaPegada.transform.position;
-                distanciaBroca = (puntaPunto1.transform.localPosition.z + 1) / 2;
+                distanciaBroca = puntaPunto1.transform.localPosition.z + 1;
+              
                 perforando.SetActive(true);
                 trapecioEmpty.SetActive(false);
                 testigoTrapecio.enabled = false;
@@ -424,7 +446,6 @@ public class ColliderBehaviour : MonoBehaviour {
                 perforando.SetActive(true);
                 trapecioEmpty.SetActive(false);
                 testigoTrapecio.enabled = false;
-
                 if (distanciaBroca < 0.0001)
                 {
 
@@ -472,7 +493,6 @@ public class ColliderBehaviour : MonoBehaviour {
 
                 profundidad.text = (((int)(distanciaBrocaEnt * 1000)).ToString() + "mm");
                
-                //if(distanciaBrocaEnt * 1000 == 0) { Debug.Log("la distancia es cero"); }
             }
 
 
@@ -487,8 +507,9 @@ public class ColliderBehaviour : MonoBehaviour {
 
         if (other.gameObject.name == "Hueso")
         {
-           // distanciabrocahueso = 0;
+            // distanciabrocahueso = 0;
             //HuesoCol.text = distanciabrocahueso.ToString();
+           
             
         }
 
