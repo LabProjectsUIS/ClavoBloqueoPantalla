@@ -46,6 +46,7 @@ public class register : MonoBehaviour {
     GameObject tibiaR;
     GameObject guiaModel;
     GameObject sphereLarga;
+    GameObject Hueso;
     private Vector3 offset;
     bool m;
     float tempDis;
@@ -54,6 +55,7 @@ public class register : MonoBehaviour {
     // Use this for initialization
     void Awake ()
     {
+        Hueso = GameObject.Find("Hueso");
         Piel = GameObject.Find("CONOHueco");
         flag = GameObject.Find("Flag");
         camH = GameObject.Find("CameraHueso").GetComponent<Camera>();
@@ -140,9 +142,11 @@ public class register : MonoBehaviour {
         //phase 1
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            Hueso.gameObject.SetActive(false);
             Piel.SetActive(true);
           flag.SetActive(true);
             //Proximales on
+            
             camH.gameObject.SetActive(false);
             camH2.gameObject.SetActive(false);
            
@@ -156,6 +160,7 @@ public class register : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             //Distales on
+            Hueso.gameObject.SetActive(true);
             Piel.SetActive(false);
             flag.SetActive(false);
             m = false;

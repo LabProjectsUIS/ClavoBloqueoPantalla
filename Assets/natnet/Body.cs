@@ -205,7 +205,7 @@ public class Body : MonoBehaviour
                 brocaPerdida = false;
                 bone.transform.position = position;
                 bone.transform.rotation = orientation;
-                bone.transform.eulerAngles = new Vector3(bone.transform.eulerAngles.x, bone.transform.eulerAngles.y, 0);
+                //bone.transform.eulerAngles = new Vector3(bone.transform.eulerAngles.x, bone.transform.eulerAngles.y, 0);
             }
 
             else

@@ -226,11 +226,11 @@ public class ColliderBehaviour : MonoBehaviour {
                 //Debug.Log(isDrillingBone);
                 //Debug.Log(distanciabrocahueso);
                 HuesoPunta.transform.position = puntaBrocaPegada.transform.position;
-                distanciaBroca2Hueso = ((HuesoPunta.transform.localPosition.z +5))/10;
-                Debug.Log(distanciaBroca);
+                distanciaBroca2Hueso = ((HuesoPunta.transform.localPosition.z +8)/14);
+                Debug.Log(distanciaBroca2Hueso + "distancia broca de hueso");
                 HuesoCol.gameObject.SetActive(true);
 
-                HuesoCol.text = (((int)(0.026f * distanciaBroca2Hueso * 1000)).ToString() + "mm");
+                HuesoCol.text = (((int)((distanciaBroca2Hueso)*1000*0.04f)-1).ToString() + "mm");
            
             //Debug.Log(HuesoCol.text);
         }
