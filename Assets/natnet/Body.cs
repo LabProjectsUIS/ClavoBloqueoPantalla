@@ -199,16 +199,18 @@ public class Body : MonoBehaviour
             }
             if (objectName == "Guia")
             {
-            //    bone.transform.position = new Vector3(qx / 1000, qy / 1000, qz / 1000);
-            //    puntaPointer.transform.position = position;
-            //    bone.transform.LookAt(puntaPointer.transform);
+                //bone.transform.position = new Vector3(qx / 1000, qy / 1000, qz / 1000);
+                //puntaPointer.transform.position = position;
+				 //bone.transform.LookAt(puntaPointer.transform);
                 brocaPerdida = false;
                 bone.transform.position = position;
                 bone.transform.rotation = orientation;
-                //bone.transform.eulerAngles = new Vector3(bone.transform.eulerAngles.x, bone.transform.eulerAngles.y, 0);
-            }
+				//bone.transform.eulerAngles = new Vector3(bone.transform.eulerAngles.x, bone.transform.eulerAngles.y, 0);
 
-            else
+				//bone.transform.eulerAngles = new Vector3(bone.transform.eulerAngles.x, bone.transform.eulerAngles.y - 90.0f, 0);
+			}
+
+			else
             {
                 bone.transform.position = position;
                 bone.transform.rotation = orientation;
