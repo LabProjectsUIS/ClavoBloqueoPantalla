@@ -5,7 +5,7 @@ using UnityEngine;
 public class mainScript : MonoBehaviour
 {
 
-    private GameObject /*obj1,*/ obj2, obj3;
+    private GameObject /*obj1,*/ obj2, obj3,obj4, obj5, obj6, obj7, obj8, obj9, obj10;
     //private bool rotatingObj1 = false;
     private Vector3 rotationAxis1;
     //private System.Random rnd = new System.Random();
@@ -21,7 +21,14 @@ public class mainScript : MonoBehaviour
         /*obj1 = GameObject.Find("original");*/
         obj2 = GameObject.Find("Guia");
         obj3 = GameObject.Find("Guia");
-    }
+		obj4 = GameObject.Find("Guia");
+		obj5 = GameObject.Find("Guia");
+		obj6 = GameObject.Find("Guia");
+		obj7 = GameObject.Find("Guia");
+		obj8 = GameObject.Find("Guia");
+		obj9 = GameObject.Find("Guia");
+		obj10 = GameObject.Find("Guia");
+	}
 
     void Update()
     {
