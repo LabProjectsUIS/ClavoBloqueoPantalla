@@ -81,7 +81,7 @@ public class register : MonoBehaviour {
         f2 = GameObject.Find("f2");
         f3 = GameObject.Find("f3");
         puntaPointer = GameObject.Find("puntaPointer");
-        guiaModel = GameObject.Find("guia_model");
+        guiaModel = GameObject.Find("Po");
         sphereLarga = GameObject.Find("s1");
         femur = GameObject.Find("femurclean");
         femurM = GameObject.Find("femurmodel");
