@@ -1,6 +1,0 @@
-﻿6,"Guia"
-2,"femurclean"
-3,"Tibia"
-1,"Pointer"
-4,"Gafas"
-7,"clavoclean"
